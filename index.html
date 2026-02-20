@@ -5,18 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE HUG Countdown</title>
 <style>
-    body {
+    html, body {
         margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop');
-        background-size: cover;
-        background-position: center;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
         font-family: Arial, sans-serif;
         color: #ffd700;
         text-align: center;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video-bg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: -1;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
     }
 
     h1 {
@@ -50,11 +74,17 @@
 </style>
 </head>
 <body>
+    <video class="video-bg" autoplay muted loop playsinline>
+        <!-- IMPORTANT: spaces must be %20 in URLs -->
+        <source src="WhatsApp%20Video%202026-02-20%20at%2014.57.10.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
     <audio id="bgMusic" loop>
         <source src="Liverpool.mp3.mpeg" type="audio/mpeg">
     </audio>
 
-    <div>
+    <div class="content">
         <h1>THE HUG</h1>
         <div id="countdown">00:00:00:00</div>
         <button id="playBtn">▶ Play Music</button>
