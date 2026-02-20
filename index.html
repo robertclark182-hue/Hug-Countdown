@@ -24,6 +24,19 @@
 
     .wrapper {
         text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    .banner-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.15;
+        z-index: 1;
     }
 
     h1 {
@@ -52,16 +65,122 @@
         transform: scale(1.05);
     }
 
+    .music-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .music-controls button {
+        background-color: rgba(255, 215, 0, 0.3);
+        border: 2px solid #ffd700;
+        color: #ffd700;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .music-controls button:hover {
+        background-color: rgba(255, 215, 0, 0.6);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .music-icon {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+
+    .decorative-images {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .decorative-images img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid #ffd700;
+        object-fit: cover;
+        opacity: 0.8;
+        transition: transform 0.3s ease;
+    }
+
+    .decorative-images img:hover {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
 </style>
 </head>
 <body>
+
+<!-- Background music -->
+<audio id="bgMusic" loop style="display: none;">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Background image for subtle decoration -->
+<img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&h=800&fit=crop" alt="Background" class="banner-image">
 
 <div class="wrapper">
     <h1>THE HUG</h1>
     <div id="countdown">00:00:00:00</div>
 </div>
 
+<!-- Decorative images -->
+<div class="decorative-images">
+    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=100&h=100&fit=crop" alt="Party decorations" title="Get excited!">
+    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=100&h=100&fit=crop" alt="Celebration" title="Almost there!">
+</div>
+
+<!-- Music controls -->
+<div class="music-controls">
+    <button id="musicBtn"><span class="music-icon">🎵</span> Music</button>
+    <button id="volumeDownBtn">-</button>
+    <button id="volumeUpBtn">+</button>
+</div>
+
 <script>
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const volumeDownBtn = document.getElementById("volumeDownBtn");
+    const volumeUpBtn = document.getElementById("volumeUpBtn");
+    let isPlaying = false;
+
+    // Music control
+    musicBtn.addEventListener("click", function() {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicBtn.innerHTML = '<span class="music-icon">🎵</span> Music';
+            isPlaying = false;
+        } else {
+            bgMusic.play();
+            musicBtn.innerHTML = '<span class="music-icon">🎶</span> Music';
+            isPlaying = true;
+        }
+    });
+
+    // Volume controls
+    volumeDownBtn.addEventListener("click", function() {
+        bgMusic.volume = Math.max(0, bgMusic.volume - 0.1);
+    });
+
+    volumeUpBtn.addEventListener("click", function() {
+        bgMusic.volume = Math.min(1, bgMusic.volume + 0.1);
+    });
+
     // Countdown to Friday, 27 February 2026, 5:30 PM
     const targetDate = new Date(2026, 1, 27, 17, 30, 0).getTime();
     const countdownElement = document.getElementById("countdown");
