@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hug Countdown</title>
     <style>
         body {
-            background-image: url('path/to/mathews-street-liverpool.jpg'); /* Update to correct path */
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1551932880-b30f427a64ad');
             background-size: cover;
-            background-position: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #countdown {
+            font-size: 3em;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Hug Countdown!</h1>
-    <div id="countdown">
-        <!-- Countdown logic here -->
-    </div>
+    <div id="countdown">Countdown Timer</div>
+    <audio controls autoplay>
+        <source src="your-music-file-url.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 </html>
