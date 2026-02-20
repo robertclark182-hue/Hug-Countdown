@@ -11,7 +11,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(to bottom, #1c1c2e, #3b2f4a);
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop');
+        background-size: cover;
+        background-position: center;
         font-family: Arial, sans-serif;
         color: #ffd700;
         text-align: center;
@@ -20,21 +22,64 @@
     h1 {
         font-size: 8vw;
         margin-bottom: 2vh;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
     }
 
     #countdown {
         font-size: 10vw;
         font-weight: bold;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+        margin-bottom: 3vh;
+    }
+
+    #playBtn {
+        background-color: #ff0000;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 2vw;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 2vh;
+    }
+
+    #playBtn:hover {
+        background-color: #cc0000;
     }
 </style>
 </head>
 <body>
+    <audio id="bgMusic" loop>
+        <source src="Liverpool.mp3.mpeg" type="audio/mpeg">
+    </audio>
+
     <div>
         <h1>THE HUG</h1>
         <div id="countdown">00:00:00:00</div>
+        <button id="playBtn">▶ Play Music</button>
     </div>
 
 <script>
+    const bgMusic = document.getElementById("bgMusic");
+    const playBtn = document.getElementById("playBtn");
+    let isPlaying = false;
+
+    playBtn.addEventListener('click', function() {
+        if (isPlaying) {
+            bgMusic.pause();
+            playBtn.textContent = '▶ Play Music';
+            isPlaying = false;
+        } else {
+            bgMusic.volume = 0.5;
+            bgMusic.play().catch(function(error) {
+                console.log("Could not play audio:", error);
+            });
+            playBtn.textContent = '⏸ Stop Music';
+            isPlaying = true;
+        }
+    });
+
     const targetDate = new Date(2026, 1, 27, 17, 30, 0).getTime();
     const countdownElement = document.getElementById("countdown");
 
