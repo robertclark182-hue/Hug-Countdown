@@ -64,7 +64,7 @@
 </head>
 <body>
 
-<audio id="bgMusic" autoplay loop>
+<audio id="bgMusic" autoplay muted loop>
     <source src="Liverpool.mp3.mpeg" type="audio/mpeg">
 </audio>
 
@@ -77,12 +77,19 @@
     const bgMusic = document.getElementById("bgMusic");
     bgMusic.volume = 0.5;
 
-    bgMusic.play().catch(function(error) {
-        console.log("Autoplay blocked");
-        document.addEventListener('click', function() {
-            if (bgMusic.paused) bgMusic.play();
-        }, { once: true });
-    });
+    // Auto-play with sound
+    const playPromise = bgMusic.play();
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            bgMusic.muted = false;
+        }).catch(error => {
+            console.log("Autoplay prevented, will play on user interaction");
+            document.addEventListener('click', () => {
+                bgMusic.muted = false;
+                bgMusic.play();
+            }, { once: true });
+        });
+    }
 
     const targetDate = new Date(2026, 1, 27, 17, 30, 0).getTime();
     const countdownElement = document.getElementById("countdown");
