@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE HUG Countdown</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
     html, body {
         margin: 0;
@@ -12,16 +11,15 @@
         height: 100%;
         width: 100%;
         overflow: hidden;
-        color: #00ff88;
+        font-family: Arial, sans-serif;
+        color: #ffd700;
         text-align: center;
-        background: #0a0e27;
     }
 
     body {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: 'Space Grotesk', sans-serif;
     }
 
     .video-bg {
@@ -36,9 +34,8 @@
     .overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.3);
         z-index: -1;
-        backdrop-filter: blur(2px);
     }
 
     .content {
@@ -47,96 +44,32 @@
     }
 
     h1 {
-        font-family: 'Orbitron', monospace;
         font-size: 8vw;
-        font-weight: 900;
         margin-bottom: 2vh;
-        color: #00ff88;
-        text-shadow: 
-            0 0 20px rgba(0, 255, 136, 0.8),
-            0 0 40px rgba(0, 255, 136, 0.5),
-            0 0 60px rgba(255, 0, 255, 0.3);
-        letter-spacing: 3px;
-        animation: neonGlow 2s ease-in-out infinite;
-    }
-
-    @keyframes neonGlow {
-        0%, 100% {
-            text-shadow: 
-                0 0 20px rgba(0, 255, 136, 0.8),
-                0 0 40px rgba(0, 255, 136, 0.5),
-                0 0 60px rgba(255, 0, 255, 0.3);
-        }
-        50% {
-            text-shadow: 
-                0 0 30px rgba(0, 255, 136, 1),
-                0 0 50px rgba(0, 255, 136, 0.8),
-                0 0 80px rgba(255, 0, 255, 0.6);
-        }
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
     }
 
     #countdown {
-        font-family: 'Orbitron', monospace;
         font-size: 10vw;
-        font-weight: 900;
-        color: #00ffff;
-        text-shadow: 
-            0 0 20px rgba(0, 255, 255, 0.9),
-            0 0 40px rgba(0, 255, 255, 0.6),
-            0 0 60px rgba(255, 0, 255, 0.4),
-            0 0 100px rgba(0, 255, 255, 0.2);
+        font-weight: bold;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
         margin-bottom: 3vh;
-        letter-spacing: 2px;
-        animation: countdownGlow 1.5s ease-in-out infinite;
-    }
-
-    @keyframes countdownGlow {
-        0%, 100% {
-            text-shadow: 
-                0 0 20px rgba(0, 255, 255, 0.9),
-                0 0 40px rgba(0, 255, 255, 0.6),
-                0 0 60px rgba(255, 0, 255, 0.4),
-                0 0 100px rgba(0, 255, 255, 0.2);
-        }
-        50% {
-            text-shadow: 
-                0 0 30px rgba(0, 255, 255, 1),
-                0 0 50px rgba(0, 255, 255, 0.8),
-                0 0 80px rgba(255, 0, 255, 0.6),
-                0 0 120px rgba(0, 255, 255, 0.4);
-        }
     }
 
     #playBtn {
-        font-family: 'Space Grotesk', sans-serif;
-        background: linear-gradient(135deg, #00ff88 0%, #00ffff 100%);
-        color: #0a0e27;
-        border: 2px solid #00ffff;
+        background-color: #ff0000;
+        color: white;
+        border: none;
         padding: 15px 30px;
         font-size: 2vw;
-        font-weight: 700;
-        border-radius: 10px;
+        font-weight: bold;
+        border-radius: 5px;
         cursor: pointer;
         margin-top: 2vh;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: all 0.3s ease;
-        box-shadow: 
-            0 0 20px rgba(0, 255, 136, 0.5),
-            0 0 40px rgba(0, 255, 255, 0.3);
     }
 
     #playBtn:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #00ffff 0%, #00ff88 100%);
-        box-shadow: 
-            0 0 30px rgba(0, 255, 136, 0.8),
-            0 0 60px rgba(0, 255, 255, 0.6),
-            0 0 90px rgba(255, 0, 255, 0.3);
-    }
-
-    #playBtn:active {
-        transform: scale(0.98);
+        background-color: #cc0000;
     }
 </style>
 </head>
@@ -147,7 +80,7 @@
     </video>
     <div class="overlay"></div>
 
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic" loop>
         <source src="Liverpool.mp3.mpeg" type="audio/mpeg">
     </audio>
 
