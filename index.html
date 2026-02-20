@@ -3,51 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE HUG</title>
+    <title>Hug Countdown</title>
     <style>
         body {
-            background-image: url('path_to_liverpool_street_background_image.jpg');
+            background-image: url('https://images.unsplash.com/photo-1588581846865-cb53a25f432a?fit=crop&w=1920&h=1080'); /* Liverpool street scene from Unsplash */
             background-size: cover;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .countdown {
-            font-size: 2rem;
-        }
+        /* Additional styles can go here */
     </style>
 </head>
 <body>
-    <h1>THE HUG</h1>
-    <div class="countdown" id="countdown"></div>
-    <audio autoplay loop>
-        <source src="Liverpool.mp3.mpeg" type="audio/mpeg">
+    <h1>Countdown Timer</h1>
+    <div id="countdown"></div>
+    <audio id="music-player" controls>
+        <source src="your-music-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
     <script>
-        const countDownDate = new Date("Feb 27, 2026 17:30:00").getTime();
-
+        // Countdown Timer Logic
+        const countdownDate = new Date('2026-02-20T13:40:22Z').getTime();
         const x = setInterval(function() {
             const now = new Date().getTime();
-            const distance = countDownDate - now;
-            
+            const distance = countdownDate - now;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
+            document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
+                document.getElementById('countdown').innerHTML = 'EXPIRED';
             }
         }, 1000);
     </script>
