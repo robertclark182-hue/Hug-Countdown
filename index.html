@@ -65,7 +65,7 @@
         transform: scale(1.05);
     }
 
-    .music-controls {
+    .volume-controls {
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -75,7 +75,7 @@
         align-items: center;
     }
 
-    .music-controls button {
+    .volume-controls button {
         background-color: rgba(255, 215, 0, 0.3);
         border: 2px solid #ffd700;
         color: #ffd700;
@@ -86,14 +86,9 @@
         transition: all 0.3s ease;
     }
 
-    .music-controls button:hover {
+    .volume-controls button:hover {
         background-color: rgba(255, 215, 0, 0.6);
         box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-
-    .music-icon {
-        font-size: 18px;
-        margin-right: 5px;
     }
 
     .decorative-images {
@@ -125,8 +120,8 @@
 </head>
 <body>
 
-<!-- Background music -->
-<audio id="bgMusic" loop style="display: none;">
+<!-- Background music - auto plays -->
+<audio id="bgMusic" loop autoplay style="display: none;">
     <source src="Liverpool.mp3.mpeg" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
@@ -145,31 +140,26 @@
     <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=100&h=100&fit=crop" alt="Celebration" title="Almost there!">
 </div>
 
-<!-- Music controls -->
-<div class="music-controls">
-    <button id="musicBtn"><span class="music-icon">🎵</span> Music</button>
-    <button id="volumeDownBtn">-</button>
-    <button id="volumeUpBtn">+</button>
+<!-- Volume controls only -->
+<div class="volume-controls">
+    <button id="volumeDownBtn">🔊 -</button>
+    <button id="volumeUpBtn">🔊 +</button>
 </div>
 
 <script>
     const bgMusic = document.getElementById("bgMusic");
-    const musicBtn = document.getElementById("musicBtn");
     const volumeDownBtn = document.getElementById("volumeDownBtn");
     const volumeUpBtn = document.getElementById("volumeUpBtn");
-    let isPlaying = false;
 
-    // Music control
-    musicBtn.addEventListener("click", function() {
-        if (isPlaying) {
-            bgMusic.pause();
-            musicBtn.innerHTML = '<span class="music-icon">🎵</span> Music';
-            isPlaying = false;
-        } else {
-            bgMusic.play();
-            musicBtn.innerHTML = '<span class="music-icon">🎶</span> Music';
-            isPlaying = true;
-        }
+    // Try to autoplay the music
+    bgMusic.play().catch(function(error) {
+        // Autoplay may be blocked - user interaction needed
+        console.log("Autoplay blocked. Music will play on first user interaction.");
+        document.addEventListener('click', function() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+            }
+        }, { once: true });
     });
 
     // Volume controls
