@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THE HUG Countdown</title>
@@ -11,7 +14,7 @@
         height: 100%;
         width: 100%;
         overflow: hidden;
-        font-family: Arial, sans-serif;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         color: #ffd700;
         text-align: center;
     }
@@ -44,32 +47,57 @@
     }
 
     h1 {
-        font-size: 8vw;
-        margin-bottom: 2vh;
-        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-    }
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(44px, 7vw, 110px);
+    margin-bottom: 2vh;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: #d7fff9;
+    text-shadow:
+        0 0 8px rgba(0, 255, 234, 0.55),
+        0 0 18px rgba(0, 255, 234, 0.35),
+        0 0 38px rgba(255, 0, 204, 0.25),
+        0 12px 40px rgba(0,0,0,0.8);
+}
 
     #countdown {
-        font-size: 10vw;
-        font-weight: bold;
-        text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-        margin-bottom: 3vh;
+       font-family: "Orbitron", sans-serif;
+    font-size: clamp(56px, 9vw, 140px);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+
+    color: #ffffff;
+    text-shadow:
+        0 0 10px rgba(0, 255, 234, 0.70),
+        0 0 26px rgba(0, 255, 234, 0.45),
+        0 0 52px rgba(255, 0, 204, 0.25),
+        0 14px 48px rgba(0,0,0,0.85);
     }
 
     #playBtn {
-        background-color: #ff0000;
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        font-size: 2vw;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 2vh;
+        font-family: "Inter", sans-serif;
+    font-size: clamp(16px, 1.8vw, 22px);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    color: #081018;
+    background: linear-gradient(90deg, #00ffea, #ff00cc);
+    border: 0;
+    padding: 14px 28px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 16px rgba(0, 255, 234, 0.35),
+        0 0 26px rgba(255, 0, 204, 0.20),
+        0 16px 40px rgba(0,0,0,0.45);
     }
 
     #playBtn:hover {
-        background-color: #cc0000;
+        filter: brightness(1.08);
+    transform: translateY(-1px);
     }
 </style>
 </head>
